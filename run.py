@@ -16,7 +16,7 @@ def index(): # this function index returns the "hello world"
 
 @app.route("/about")
 def about():
-    return render_template("about.html", page_title="About")# remember to leave two spaces between python functions
+    return render_template("about.html", page_title="About", list_of_numbers=[1, 2, 3])# remember to leave two spaces between python functions
 
 
 @app.route("/contact")
