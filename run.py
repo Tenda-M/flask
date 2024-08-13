@@ -2,7 +2,7 @@
 #.py means it's a python file
 import os
 import json
-from flask import Flask, render_template #First, we're importing our Flask class.
+from flask import Flask, render_template, request #First, we're importing our Flask class.
 
 
 app = Flask(__name__)#We're then creating an instance of this and storing it in a variable called 'app'.
@@ -36,9 +36,12 @@ def about_member(member_name):
     return render_template("member.html", member=member)
 
 
-@app.route("/contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
-    return render_template("contact.html", page_title="contact")# remember to leave two spaces between python functions
+    if request.method == "POST":
+        print(request.form.get("name"))
+        print(request.form["email"])
+    return render_template("contact.html", page_title="Contact") # remember to leave two spaces between python functions
 
 
 @app.route("/careers")
